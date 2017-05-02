@@ -1,2 +1,3 @@
-# ninety-nine-rust-problems
-Rust adaption of Ninety-Nine Prolog Problems
+# Ninety-Nine Rust Problems
+
+This repository is created for my study.

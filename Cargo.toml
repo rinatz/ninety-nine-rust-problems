@@ -1,0 +1,6 @@
+[package]
+name = "ninety-nine-rust-problems"
+version = "0.1.0"
+authors = ["Kenichiro IDA"]
+
+[dependencies]

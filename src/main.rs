@@ -56,12 +56,14 @@ mod p04 {
 
 // Reverse a list.
 mod p05 {
-    fn reverse<T>(vec: &Vec<T>) -> Vec<T> where T: Clone {
+    fn reverse<T>(vec: &Vec<T>) -> Vec<T>
+        where T: Clone
+    {
         let mut result = vec.clone();
         let len = vec.len();
         let middle = len / 2;
 
-        for low in 0 .. middle {
+        for low in 0..middle {
             let high = len - low - 1;
 
             result[low] = vec[high].clone();
@@ -79,11 +81,13 @@ mod p05 {
 
 // Find out whether a list is a palindrome.
 mod p06 {
-    fn is_palindrome<T>(vec: &Vec<T>) -> bool where T: PartialEq {
+    fn is_palindrome<T>(vec: &Vec<T>) -> bool
+        where T: PartialEq
+    {
         let len = vec.len();
         let middle = len / 2;
 
-        for low in 0 .. middle {
+        for low in 0..middle {
             let high = len - low - 1;
 
             if vec[low] != vec[high] {

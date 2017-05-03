@@ -1,3 +1,3 @@
 # Ninety-Nine Rust Problems
 
-This repository is created for my study.
+Solves Ninety-Nine Problems with Rust.

@@ -1,4 +1,4 @@
-// Find the last element of a list.
+// (*) Find the last element of a list.
 mod p01 {
     fn last<T>(vec: &Vec<T>) -> Option<&T> {
         vec.last()
@@ -10,7 +10,7 @@ mod p01 {
     }
 }
 
-// Find the last but one element of a list.
+// (*) Find the last but one element of a list.
 mod p02 {
     fn penultimate<T>(vec: &Vec<T>) -> Option<&T> {
         if vec.len() < 2 {
@@ -26,7 +26,7 @@ mod p02 {
     }
 }
 
-// Find the Kth element of a list.
+// (*) Find the Kth element of a list.
 mod p03 {
     fn nth<T>(index: usize, vec: &Vec<T>) -> Option<&T> {
         if index >= vec.len() {
@@ -42,7 +42,7 @@ mod p03 {
     }
 }
 
-// Find the number of elements of a list.
+// (*) Find the number of elements of a list.
 mod p04 {
     fn length<T>(vec: &Vec<T>) -> usize {
         vec.len()
@@ -54,7 +54,7 @@ mod p04 {
     }
 }
 
-// Reverse a list.
+// (*) Reverse a list.
 mod p05 {
     fn reverse<T>(vec: &Vec<T>) -> Vec<T>
         where T: Clone
@@ -79,7 +79,7 @@ mod p05 {
     }
 }
 
-// Find out whether a list is a palindrome.
+// (*) Find out whether a list is a palindrome.
 mod p06 {
     fn is_palindrome<T>(vec: &Vec<T>) -> bool
         where T: PartialEq
@@ -101,5 +101,68 @@ mod p06 {
     #[test]
     fn test() {
         assert!(is_palindrome(&vec![1, 2, 3, 2, 1]));
+    }
+}
+
+// (**) Flatten a nested list structure.
+mod p07 {
+
+}
+
+// (**) Eliminate consecutive duplicates of list elements.
+mod p08 {
+    fn compress<T>(vec: &Vec<T>) -> Vec<T> where T: PartialEq + Clone {
+        let mut result = Vec::new();
+        let mut item: Option<&T> = None;
+
+        for v in vec {
+            if item != Some(v) {
+                result.push(v.clone());
+                item = Some(v);
+            }
+        }
+
+        result
+    }
+
+    #[test]
+    fn test() {
+        let v = vec!['a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e'];
+        let expected = vec!['a', 'b', 'c', 'a', 'd', 'e'];
+
+        assert_eq!(compress(&v), expected);
+    }
+}
+
+mod p09 {
+    fn pack<T>(vec: &Vec<T>) -> Vec<Vec<T>> where T: PartialEq + Clone {
+        let mut result = Vec::new();
+        let mut item: Option<&T> = None;
+
+        for v in vec {
+            if item != Some(v) {
+                result.push(Vec::new());
+                item = Some(v);
+            }
+
+            result.last_mut().unwrap().push(v.clone());
+        }
+
+        result
+    }
+
+    #[test]
+    fn test() {
+        let v = vec!['a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e'];
+        let expected = vec![
+            vec!['a', 'a', 'a', 'a'],
+            vec!['b'],
+            vec!['c', 'c'],
+            vec!['a', 'a'],
+            vec!['d'],
+            vec!['e', 'e', 'e', 'e'],
+        ];
+
+        assert_eq!(pack(&v), expected);
     }
 }

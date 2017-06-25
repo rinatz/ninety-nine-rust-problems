@@ -127,7 +127,14 @@ mod p08 {
 
     #[test]
     fn test() {
-        let v = vec!['a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e'];
+        let v = vec![
+            'a', 'a', 'a', 'a',
+            'b',
+            'c', 'c',
+            'a', 'a',
+            'd',
+            'e', 'e', 'e', 'e'
+        ];
         let expected = vec!['a', 'b', 'c', 'a', 'd', 'e'];
 
         assert_eq!(compress(&v), expected);
@@ -153,7 +160,14 @@ mod p09 {
 
     #[test]
     fn test() {
-        let v = vec!['a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e'];
+        let v = vec![
+            'a', 'a', 'a', 'a',
+            'b',
+            'c', 'c',
+            'a', 'a',
+            'd',
+            'e', 'e', 'e', 'e'
+        ];
         let expected = vec![
             vec!['a', 'a', 'a', 'a'],
             vec!['b'],

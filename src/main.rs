@@ -141,6 +141,7 @@ mod p08 {
     }
 }
 
+// (**) Pack consecutive duplicates of list elements into sublists.
 mod p09 {
     fn pack<T>(vec: &Vec<T>) -> Vec<Vec<T>> where T: PartialEq + Clone {
         let mut result = Vec::new();
@@ -178,5 +179,56 @@ mod p09 {
         ];
 
         assert_eq!(pack(&v), expected);
+    }
+}
+
+// (*) Run-length encoding of a list.
+mod p10 {
+    fn encode(vec: &Vec<char>) -> Vec<(i32, char)> {
+        let mut result = Vec::new();
+        let mut prev: Option<&char> = None;
+        let mut count: i32 = 0;
+
+        for v in vec {
+            if prev == None {
+                prev = Some(&v);
+            }
+
+            if prev != Some(&v) {
+                result.push((count, *prev.unwrap()));
+                count = 0;
+                prev = Some(&v);
+            }
+
+            count += 1;
+        }
+
+        if prev != None {
+            result.push((count, *prev.unwrap()));
+        }
+
+        result
+    }
+
+    #[test]
+    fn test() {
+        let v = vec![
+            'a', 'a', 'a', 'a',
+            'b',
+            'c', 'c',
+            'a', 'a',
+            'd',
+            'e', 'e', 'e', 'e',
+        ];
+        let expected = vec![
+            (4, 'a'),
+            (1, 'b'),
+            (2, 'c'),
+            (2, 'a'),
+            (1, 'd'),
+            (4, 'e'),
+        ];
+
+        assert_eq!(encode(&v), expected);
     }
 }
